@@ -1,6 +1,6 @@
 # Shekhar Suman — Portfolio
 
-A single-page portfolio site for an AI and machine learning engineer, built with Next.js, React, and Tailwind CSS. Content is centralized so you can update copy, links, and résumé data in one place without touching layout components.
+Single-page portfolio for **Shekhar Suman** — machine learning engineer, computer vision and NLP focus, and Indian Air Force veteran. Built with Next.js and Tailwind CSS. All résumé-style content lives in one TypeScript module so you can refresh copy and links without editing section components.
 
 ## Tech stack
 
@@ -11,23 +11,23 @@ A single-page portfolio site for an AI and machine learning engineer, built with
 
 ## Getting started
 
-Prerequisites: Node.js 20+ and your preferred package manager (`npm`, `pnpm`, or `yarn`).
+**Prerequisites:** Node.js 20+ and npm (or pnpm / yarn).
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in the browser.
+Open [http://localhost:3000](http://localhost:3000).
 
 ### Scripts
 
-| Command       | Description              |
-| ------------- | ------------------------ |
-| `npm run dev` | Start the dev server     |
-| `npm run build` | Production build       |
-| `npm run start` | Run the production server |
-| `npm run lint` | Run ESLint (if configured) |
+| Command         | Description                 |
+| --------------- | --------------------------- |
+| `npm run dev`   | Start the development server |
+| `npm run build` | Production build            |
+| `npm run start` | Run the production server   |
+| `npm run lint`  | ESLint (install the `eslint` package if the command is missing) |
 
 ## Project structure
 
@@ -38,8 +38,8 @@ app/
   globals.css         # Global styles / theme tokens
 
 components/
-  portfolio/          # Site-specific sections and composition
-    home-page.tsx     # Composes Header, main sections, Footer
+  portfolio/          # Sections and page composition
+    home-page.tsx     # Composes header, sections, footer
     header.tsx        # Nav + scroll spy
     hero.tsx
     about.tsx
@@ -50,39 +50,43 @@ components/
     contact.tsx
     footer.tsx
     social-icon-links.tsx
-  ui/                 # Minimal primitives used by the contact form and buttons
+  ui/                 # Buttons, form fields, label, separator
 
 hooks/
-  use-section-reveal.ts   # Intersection-observer “fade in” for sections
+  use-section-reveal.ts   # Intersection-observer reveal for sections
 
 lib/
   portfolio/
-    site-data.ts      # Nav, profile, skills, jobs, projects, education (edit here)
+    site-data.ts      # Nav, profile, skills, jobs, projects, education, certs
   scroll.ts           # Smooth scroll helpers
   utils.ts            # `cn()` for class names
 
+public/               # Static assets (e.g. profile photo referenced in site-data)
 next.config.mjs
+postcss.config.mjs
 tsconfig.json
 ```
 
 ## Customizing content
 
-Most text and structured résumé data live in **`lib/portfolio/site-data.ts`**:
+Edit **`lib/portfolio/site-data.ts`**:
 
-- `siteNav` — header links and section IDs (`#about`, `#skills`, …)
-- `siteProfile` — name, role, email, social URLs, hero tagline, about copy, image URL
+- `siteNav` — header anchors (`#about`, `#skills`, …)
+- `siteProfile` — name, role, email, `linkedinUrl` / `linkedinHandle`, `githubUrl`, location, hero and about copy, `aboutImageSrc`
 - `aboutStats`, `skillCategories`, `experiences`, `featuredProjects`, `education`, `certifications`
 - `sectionCopy` — section titles and subtitles
 
-**Social links:** Set `siteProfile.githubUrl` to your real GitHub profile (the template may still point at a generic URL).
+**GitHub:** Replace the placeholder `siteProfile.githubUrl` with your profile URL when ready.
 
-**Images:** The about photo uses `siteProfile.aboutImageSrc`. With `images.unoptimized: true` in `next.config.mjs`, remote URLs work without extra hostname configuration; for optimized images, configure `images.remotePatterns` and adjust as needed.
+**Images:** Place files under `public/` and set `aboutImageSrc` to a path such as `/Shekhar.png`. With `images.unoptimized: true` in `next.config.mjs`, remote URLs work without extra hostname configuration; for optimized remote images, add `images.remotePatterns` in `next.config.mjs`.
 
-**SEO:** Edit `metadata` in `app/layout.tsx`.
+**SEO:** Update `metadata` in `app/layout.tsx`.
+
+**LinkedIn sync:** Public profile details were last aligned to [linkedin.com/in/shekhar-suman-a5978833](https://www.linkedin.com/in/shekhar-suman-a5978833); re-run a manual pass in `site-data.ts` when your LinkedIn changes.
 
 ## Deployment
 
-The app is a static-friendly Next.js site. Deploy on [Vercel](https://vercel.com/) by connecting the repository, or run `npm run build` and host the output per your platform’s Next.js guide.
+Deploy on [Vercel](https://vercel.com/) by connecting the repository, or run `npm run build` and follow your host’s Next.js deployment guide.
 
 ## License
 
