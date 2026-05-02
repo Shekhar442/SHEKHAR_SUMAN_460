@@ -1,0 +1,245 @@
+export const siteNav = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Education", href: "#education" },
+  { label: "Contact", href: "#contact" },
+] as const
+
+export const siteProfile = {
+  name: "Shekhar Suman",
+  role: "AI & ML | ML Engineer | Indian Air Force Veteran | Computer Vision",
+  logoInitials: "SS",
+  email: "shekharsuman460@gmail.com",
+  linkedinUrl: "https://www.linkedin.com/in/shekhar-suman-a5978833",
+  linkedinHandle: "shekhar-suman-a5978833",
+  /** Add your GitHub URL when ready */
+  githubUrl: "https://github.com",
+  location: "Delhi, India",
+  heroSummaryLabel: "Professional summary",
+  heroTagline:
+    "AI and Machine Learning Engineer focused on real-world problems with AI, data science, and predictive analytics. Twenty years in the Indian Air Force built expertise in logistics optimization, operational planning, and analysis; today that same discipline goes into computer vision, NLP, and deep learning. Nervousness detection at 95.49% accuracy, Musafir_Bot travel assistant, and Google Data Analytics plus Google Cloud AI and Stanford statistics training.",
+  aboutSubtitle:
+    "Military precision meets modern ML: from mission-critical operations to models in production",
+  aboutImageSrc: "/Shekhar.png",
+  aboutHeading: "AI engineer with a military foundation",
+  aboutParagraphs: [
+    "I am an AI and Machine Learning Engineer with a passion for solving real-world problems using AI, data science, and predictive analytics. My journey began in the Indian Air Force, where I gained expertise in logistics optimization, operational planning, and data analysis over 20 years. I now apply that precision to AI-driven solutions in computer vision, NLP, and deep learning.",
+    "Expertise in Python, TensorFlow, OpenCV, NLP, predictive modeling, and Google Cloud AI. Highlights include a nervousness detection system at 95.49% accuracy and the Musafir_Bot AI travel chatbot. Certified across Google Data Analytics, Google Cloud AI, and Stanford Online statistics, with a drive for continuous learning and innovation.",
+  ],
+} as const
+
+export const aboutStats = [
+  { icon: "briefcase" as const, label: "Career (total)", value: "22+" },
+  { icon: "award" as const, label: "Air Force Service", value: "20" },
+  { icon: "graduationCap" as const, label: "Certifications", value: "10+" },
+]
+
+/**
+ * Technical skills — same groupings and items as résumé (TECHNICAL SKILLS).
+ * Levels are illustrative for the progress bars.
+ */
+export const skillCategories = [
+  {
+    title: "Languages & Frameworks",
+    skills: [
+      { name: "Python", level: 95 },
+      { name: "R", level: 72 },
+      { name: "TensorFlow", level: 90 },
+      { name: "PyTorch", level: 88 },
+      { name: "OpenCV", level: 90 },
+      { name: "scikit-learn", level: 88 },
+      { name: "Pandas", level: 93 },
+      { name: "NumPy", level: 93 },
+    ],
+  },
+  {
+    title: "AI/ML Specializations",
+    skills: [
+      { name: "Computer Vision", level: 95 },
+      { name: "Natural Language Processing", level: 86 },
+      { name: "Deep Learning", level: 90 },
+      { name: "Generative AI", level: 82 },
+      { name: "Predictive Modeling", level: 86 },
+    ],
+  },
+  {
+    title: "Cloud & Tools",
+    skills: [
+      { name: "Google Cloud AI", level: 85 },
+      { name: "Streamlit", level: 90 },
+      { name: "Git", level: 86 },
+      { name: "Data Visualization (Matplotlib, Seaborn)", level: 88 },
+      { name: "Linear Algebra", level: 85 },
+    ],
+  },
+  {
+    title: "Core Competencies",
+    skills: [
+      { name: "Statistical Analysis", level: 90 },
+      { name: "Image Processing", level: 94 },
+      { name: "Model Optimization", level: 86 },
+      { name: "Data-Driven Decision Making", level: 92 },
+    ],
+  },
+] as const
+
+export const experiences = [
+  {
+    title: "Machine Learning Engineer",
+    company: "Sveltetech Technology Pvt. Ltd.",
+    location: "Gurugram, Haryana",
+    period: "April 2025 – Present",
+    achievements: [
+      "Architecting and deploying scalable ML solutions for computer vision and NLP applications",
+      "Implementing deep learning models using TensorFlow and PyTorch for production environments",
+      "Collaborating with cross-functional teams to integrate AI capabilities into business workflows",
+    ],
+  },
+  {
+    title: "Junior Data Scientist",
+    company: "Zummit Infolabs",
+    location: "Bengaluru, Karnataka",
+    period: "March 2024 – Present",
+    achievements: [
+      "Developed nervousness detection system, face recognition system, and residual analysis of protein molecules",
+      "Collaborated with the generative AI team on LLM-based and multimodal work",
+      "Used Python, TensorFlow, and data visualization to analyze and interpret complex datasets",
+    ],
+  },
+  {
+    title: "Data Analyst",
+    company: "Intervie Tech",
+    location: "Patiala, Punjab",
+    period: "February 2024 – March 2024",
+    achievements: [
+      'Led team to complete "Optimizing Employee Retention and Performance through Data-Driven HR Strategies" during internship',
+      "Applied data analysis to produce insights and recommendations for retention and performance",
+      "Partnered with cross-functional teams on data-driven HR initiatives to reach project goals",
+    ],
+  },
+  {
+    title: "Data Analyst",
+    company: "MedTourEasy",
+    location: "New Delhi, Delhi",
+    period: "February 2024 – February 2024",
+    achievements: [
+      'Analyzed data for project on age differences between right- and left-handed participants',
+      "Worked with project mentor to refine insights and recommendations",
+      "Presented findings with data visualization for clear stakeholder communication",
+    ],
+  },
+  {
+    title: "Senior Non-Commissioned Officer (SNCO)",
+    company: "Indian Air Force",
+    location: "India",
+    period: "December 2001 – December 2021",
+    achievements: [
+      "Managed large-scale logistics and operational planning, optimizing resource allocation",
+      "Led data-driven decision-making with structured analysis for mission-critical operations",
+      "Ran training and performance analysis for mission readiness",
+      "Aerospace Safety Award (2016, 2018)",
+    ],
+  },
+] as const
+
+export const featuredProjects = [
+  {
+    title: "Nervousness Detection System",
+    description:
+      "AI system detecting nervousness with 95.49% accuracy using facial feature analysis and deep learning models.",
+    tech: ["Python", "TensorFlow", "Computer Vision", "Deep Learning"],
+    icon: "brain" as const,
+    highlight: "95.49% accuracy",
+  },
+  {
+    title: "Manas — Mental Health Support Chatbot",
+    description:
+      "Mental health support chatbot focused on India, built during a Kaggle 5-Day Gen AI intensive.",
+    tech: ["Generative AI", "Python", "NLP"],
+    icon: "messageSquare" as const,
+    highlight: "Gen AI / India",
+  },
+  {
+    title: "Musafir Bot — AI Travel Chatbot",
+    description:
+      "Intelligent travel assistant using NLP and generative AI for personalized recommendations and itinerary support.",
+    tech: ["NLP", "Generative AI", "Python"],
+    icon: "messageSquare" as const,
+    highlight: "Generative AI",
+  },
+  {
+    title: "Face Recognition System",
+    description:
+      "Real-time face recognition for authentication using deep learning and computer vision techniques.",
+    tech: ["OpenCV", "Neural Networks", "Deep Learning", "Python"],
+    icon: "scanFace" as const,
+    highlight: "Real-time auth",
+  },
+] as const
+
+export const education = [
+  {
+    degree: "Master of Computer Applications (MCA)",
+    specialization: "Artificial Intelligence" as const,
+    institution: "Jain (Deemed-to-be University)",
+    period: "2021 – 2023 · CGPA 9.11",
+  },
+  {
+    degree: "Bachelor of Computer Applications (BCA)",
+    institution: "ICFAI University",
+    period: "July 2008 – July 2013",
+  },
+  {
+    degree: "O Level (IT)",
+    institution:
+      "National Institute of Electronics & Information Technology (NIELIT)",
+    period: "August 2021 – March 2022",
+  },
+] as const
+
+export const certifications = [
+  { name: "Introduction to Statistics", issuer: "Stanford Online" },
+  { name: "Google Data Analytics Professional Certificate", issuer: "Google" },
+  { name: "Introduction to Generative AI", issuer: "Google Cloud" },
+  { name: "Data Analysis with R Programming", issuer: "Google" },
+  { name: "Share Data Through the Art of Visualization", issuer: "Google" },
+  { name: "Analyze Data to Answer Questions", issuer: "Google" },
+  { name: "Ask Questions to Make Data-Driven Decisions", issuer: "Google" },
+  { name: "Prepare Data for Exploration", issuer: "Google" },
+  { name: "Process Data from Dirty to Clean", issuer: "Google" },
+  { name: "Foundations: Data, Data, Everywhere", issuer: "Google" },
+] as const
+
+export const sectionCopy = {
+  skills: {
+    title: "Technical",
+    titleAccent: "Skills",
+    subtitle:
+      "Languages & frameworks, AI/ML focus areas, cloud & tools, and core competencies—matching my résumé.",
+  },
+  experience: {
+    title: "Professional",
+    titleAccent: "Experience",
+    subtitle: "From military operations to AI in industry",
+  },
+  projects: {
+    title: "Key",
+    titleAccent: "Projects",
+    subtitle: "Highlights from recent ML and AI work",
+  },
+  education: {
+    title: "Education &",
+    titleAccent: "Certifications",
+    subtitle: "Degrees and professional certifications",
+  },
+  contact: {
+    title: "Get in",
+    titleAccent: "Touch",
+    subtitle: "Let's discuss how AI can transform your business",
+    connectHeading: "Let's Connect",
+    connectBlurb:
+      "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out through any of the channels below.",
+  },
+} as const
