@@ -33,12 +33,13 @@ If the key is unset, the API still responds successfully and the client can use 
 
 ### Scripts
 
-| Command         | Description                    |
-| --------------- | ------------------------------ |
-| `npm run dev`   | Start the development server   |
-| `npm run build` | Production build               |
-| `npm run start` | Run the production server      |
-| `npm run lint`  | ESLint (`eslint` not bundled — add it and a config if you want this script to run) |
+| Command          | Description |
+| ---------------- | ----------- |
+| `npm run dev`    | Start the development server |
+| `npm run build`  | Production build |
+| `npm run start`  | Run the production server |
+| `npm run lint`   | ESLint (`eslint` is not listed in `package.json` — add it and a config if you want this script to run) |
+| `npm run icons`  | Regenerate PNG favicons and raster logo from `scripts/generate-icons.mjs` (requires devDependency `sharp`) |
 
 ## Project structure
 
@@ -75,7 +76,10 @@ lib/
   scroll.ts               # Smooth scroll helpers
   utils.ts                # `cn()` for class names
 
-public/                   # Static assets (e.g. profile photo referenced in site-data)
+scripts/
+  generate-icons.mjs      # Renders `icon-*.png`, `apple-icon.png`, `placeholder-logo.png` via Sharp
+
+public/                   # Static assets: profile photo, favicons (`icon.svg`, `icon-*-32x32.png`, `apple-icon.png`), wordmark (`placeholder-logo.*`)
 next.config.mjs
 postcss.config.mjs
 tsconfig.json
@@ -87,7 +91,7 @@ tsconfig.json
 Edit **`lib/portfolio/site-data.ts`**:
 
 - `siteNav` — header anchors (`#about`, `#skills`, …)
-- `siteProfile` — name, role, email, `linkedinUrl` / `linkedinHandle`, `githubUrl`, location, hero and about copy, `aboutImageSrc`
+- `siteProfile` — name, role, `logoInitials` (header badge; keep in sync with favicon monogram), email, `linkedinUrl` / `linkedinHandle`, `githubUrl`, location, hero and about copy, `aboutImageSrc`
 - `aboutStats`, `skillCategories`, `experiences`, `featuredProjects`, `education`, `certifications`
 - `sectionCopy` — section titles and subtitles
 
@@ -96,6 +100,8 @@ Edit **`lib/portfolio/site-data.ts`**:
 **Images:** Place files under `public/` and set `aboutImageSrc` to a path such as `/Shekhar.png`. With `images.unoptimized: true` in `next.config.mjs`, remote URLs work without extra hostname configuration; for optimized remote images, add `images.remotePatterns` in `next.config.mjs`.
 
 **SEO:** Update `metadata` in `app/layout.tsx`.
+
+**Branding / favicons:** The site uses a teal **SS** monogram aligned with the theme primary color. Vector favicon: `public/icon.svg` (adapts to light/dark system preference). Raster fallbacks and Apple touch icon are wired in `app/layout.tsx` (`icon-light-32x32.png`, `icon-dark-32x32.png`, `apple-icon.png`). After you change colors or glyphs, edit `public/icon.svg` (and `public/placeholder-logo.svg` if needed), update the SVG snippets inside `scripts/generate-icons.mjs` so PNG output matches, then run **`npm run icons`**.
 
 **LinkedIn sync:** Public profile details were last aligned to [linkedin.com/in/shekhar-suman-a5978833](https://www.linkedin.com/in/shekhar-suman-a5978833); re-run a manual pass in `site-data.ts` when your LinkedIn changes.
 
