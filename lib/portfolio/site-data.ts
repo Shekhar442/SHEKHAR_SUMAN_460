@@ -35,51 +35,48 @@ export const aboutStats = [
   { icon: "graduationCap" as const, label: "Certifications", value: "10+" },
 ]
 
-/**
- * Technical skills — same groupings and items as résumé (TECHNICAL SKILLS).
- * Levels are illustrative for the progress bars.
- */
+/** Technical skills — same groupings and items as résumé (TECHNICAL SKILLS). */
 export const skillCategories = [
   {
     title: "Languages & Frameworks",
     skills: [
-      { name: "Python", level: 95 },
-      { name: "R", level: 72 },
-      { name: "TensorFlow", level: 90 },
-      { name: "PyTorch", level: 88 },
-      { name: "OpenCV", level: 90 },
-      { name: "scikit-learn", level: 88 },
-      { name: "Pandas", level: 93 },
-      { name: "NumPy", level: 93 },
+      { name: "Python" },
+      { name: "R" },
+      { name: "TensorFlow" },
+      { name: "PyTorch" },
+      { name: "OpenCV" },
+      { name: "scikit-learn" },
+      { name: "Pandas" },
+      { name: "NumPy" },
     ],
   },
   {
     title: "AI/ML Specializations",
     skills: [
-      { name: "Computer Vision", level: 95 },
-      { name: "Natural Language Processing", level: 86 },
-      { name: "Deep Learning", level: 90 },
-      { name: "Generative AI", level: 82 },
-      { name: "Predictive Modeling", level: 86 },
+      { name: "Computer Vision" },
+      { name: "Natural Language Processing" },
+      { name: "Deep Learning" },
+      { name: "Generative AI" },
+      { name: "Predictive Modeling" },
     ],
   },
   {
     title: "Cloud & Tools",
     skills: [
-      { name: "Google Cloud AI", level: 85 },
-      { name: "Streamlit", level: 90 },
-      { name: "Git", level: 86 },
-      { name: "Data Visualization (Matplotlib, Seaborn)", level: 88 },
-      { name: "Linear Algebra", level: 85 },
+      { name: "Google Cloud AI" },
+      { name: "Streamlit" },
+      { name: "Git" },
+      { name: "Data Visualization (Matplotlib, Seaborn)" },
+      { name: "Linear Algebra" },
     ],
   },
   {
     title: "Core Competencies",
     skills: [
-      { name: "Statistical Analysis", level: 90 },
-      { name: "Image Processing", level: 94 },
-      { name: "Model Optimization", level: 86 },
-      { name: "Data-Driven Decision Making", level: 92 },
+      { name: "Statistical Analysis" },
+      { name: "Image Processing" },
+      { name: "Model Optimization" },
+      { name: "Data-Driven Decision Making" },
     ],
   },
 ] as const
