@@ -75,7 +75,10 @@ export function Education() {
                   </div>
                   <div>
                     <h4 className="text-sm font-medium text-foreground">{cert.name}</h4>
-                    <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {cert.issuer}
+                      {"issued" in cert && cert.issued ? ` · Issued ${cert.issued}` : ""}
+                    </p>
                   </div>
                 </div>
               ))}

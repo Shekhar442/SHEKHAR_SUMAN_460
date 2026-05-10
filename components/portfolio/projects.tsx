@@ -1,14 +1,27 @@
 "use client"
 
-import { ExternalLink, Brain, MessageSquare, ScanFace, type LucideIcon } from "lucide-react"
+import Link from "next/link"
+import {
+  ExternalLink,
+  HeartPulse,
+  MessageSquare,
+  Mic,
+  Network,
+  Plane,
+  Sprout,
+  type LucideIcon,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useSectionReveal } from "@/hooks/use-section-reveal"
 import { featuredProjects, sectionCopy } from "@/lib/portfolio/site-data"
 
 const PROJECT_ICONS: Record<(typeof featuredProjects)[number]["icon"], LucideIcon> = {
-  brain: Brain,
+  mic: Mic,
   messageSquare: MessageSquare,
-  scanFace: ScanFace,
+  plane: Plane,
+  sprout: Sprout,
+  heartPulse: HeartPulse,
+  network: Network,
 }
 
 export function Projects() {
@@ -67,9 +80,16 @@ export function Projects() {
                 <Button
                   variant="ghost"
                   className="w-full text-primary hover:text-primary hover:bg-primary/10"
+                  asChild
                 >
-                  View Details
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <Link
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on GitHub
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
               </div>
             )

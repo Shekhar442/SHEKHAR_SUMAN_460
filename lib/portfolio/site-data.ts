@@ -14,8 +14,7 @@ export const siteProfile = {
   email: "shekharsuman460@gmail.com",
   linkedinUrl: "https://www.linkedin.com/in/shekhar-suman-a5978833",
   linkedinHandle: "shekhar-suman-a5978833",
-  /** Add your GitHub URL when ready */
-  githubUrl: "https://github.com",
+  githubUrl: "https://github.com/Shekhar442",
   location: "Delhi, India",
   heroSummaryLabel: "Professional summary",
   heroTagline:
@@ -146,36 +145,58 @@ export const experiences = [
 
 export const featuredProjects = [
   {
-    title: "Nervousness Detection System",
+    title: "ARS — Hinglish Speech Recognition",
     description:
-      "AI system detecting nervousness with 95.49% accuracy using facial feature analysis and deep learning models.",
-    tech: ["Python", "TensorFlow", "Computer Vision", "Deep Learning"],
-    icon: "brain" as const,
-    highlight: "95.49% accuracy",
+      "Automatic speech recognition for Hindi–English code-mixed (Hinglish) audio using OpenAI Whisper (local GPU) and SarvamAI (cloud), with a FastAPI backend and Streamlit frontend.",
+    tech: ["Python", "Whisper", "FastAPI", "Streamlit", "Speech AI"],
+    icon: "mic" as const,
+    highlight: "ASR / Hinglish",
+    href: "https://github.com/Shekhar442/ARS",
   },
   {
     title: "Manas — Mental Health Support Chatbot",
     description:
-      "Mental health support chatbot focused on India, built during a Kaggle 5-Day Gen AI intensive.",
-    tech: ["Generative AI", "Python", "NLP"],
+      "Mental health support chatbot for empathetic, conversational assistance; Python-based implementation aligned with India-focused Gen AI coursework.",
+    tech: ["Python", "NLP", "Generative AI"],
     icon: "messageSquare" as const,
-    highlight: "Gen AI / India",
+    highlight: "Mental health",
+    href: "https://github.com/Shekhar442/Manas",
   },
   {
     title: "Musafir Bot — AI Travel Chatbot",
     description:
-      "Intelligent travel assistant using NLP and generative AI for personalized recommendations and itinerary support.",
-    tech: ["NLP", "Generative AI", "Python"],
-    icon: "messageSquare" as const,
-    highlight: "Generative AI",
+      "AI-driven travel advisor chatbot for India: conversational trip guidance and recommendations using JavaScript and NLP-oriented patterns.",
+    tech: ["JavaScript", "NLP", "Chatbot"],
+    icon: "plane" as const,
+    highlight: "Travel / India",
+    href: "https://github.com/Shekhar442/musafir-bot",
   },
   {
-    title: "Face Recognition System",
+    title: "KrushiMind — Farmer PWA",
     description:
-      "Real-time face recognition for authentication using deep learning and computer vision techniques.",
-    tech: ["OpenCV", "Neural Networks", "Deep Learning", "Python"],
-    icon: "scanFace" as const,
-    highlight: "Real-time auth",
+      "AI-powered progressive web app for Indian smallholder farmers: offline-first tools for crop identification, finances, community, and marketplace access.",
+    tech: ["JavaScript", "PWA", "AI", "AgriTech"],
+    icon: "sprout" as const,
+    highlight: "PWA / AgriTech",
+    href: "https://github.com/Shekhar442/KrushiMind",
+  },
+  {
+    title: "AyushMitr — Developmental Support Agent",
+    description:
+      "Multilingual conversational AI agent offering non-clinical, educational support for paediatric developmental conditions including Autism, ADHD, Dyslexia, and Dyscalculia.",
+    tech: ["Python", "Conversational AI", "NLP"],
+    icon: "heartPulse" as const,
+    highlight: "Multilingual agent",
+    href: "https://github.com/Shekhar442/AyushMitr",
+  },
+  {
+    title: "TaskMesh AI — Multi-Agent Pipeline",
+    description:
+      "FastAPI service that runs a multi-agent workflow pipeline with SQL-backed persistence, plus a lightweight HTML/CSS/JS console frontend.",
+    tech: ["Python", "FastAPI", "Multi-agent", "SQL"],
+    icon: "network" as const,
+    highlight: "Agents + API",
+    href: "https://github.com/Shekhar442/taskmesh-ai",
   },
 ] as const
 
@@ -199,17 +220,58 @@ export const education = [
   },
 ] as const
 
+/** Licenses & certifications — aligned with LinkedIn (issue dates as shown there). */
 export const certifications = [
-  { name: "Introduction to Statistics", issuer: "Stanford Online" },
-  { name: "Google Data Analytics Professional Certificate", issuer: "Google" },
-  { name: "Introduction to Generative AI", issuer: "Google Cloud" },
-  { name: "Data Analysis with R Programming", issuer: "Google" },
-  { name: "Share Data Through the Art of Visualization", issuer: "Google" },
-  { name: "Analyze Data to Answer Questions", issuer: "Google" },
-  { name: "Ask Questions to Make Data-Driven Decisions", issuer: "Google" },
-  { name: "Prepare Data for Exploration", issuer: "Google" },
-  { name: "Process Data from Dirty to Clean", issuer: "Google" },
-  { name: "Foundations: Data, Data, Everywhere", issuer: "Google" },
+  {
+    name: "Introduction to Statistics",
+    issuer: "Stanford Online",
+    issued: "Sep 2024",
+  },
+  {
+    name: "Google Data Analytics Professional Certificate",
+    issuer: "Coursera",
+    issued: "May 2024",
+  },
+  {
+    name: "Data Analysis with R Programming",
+    issuer: "Google",
+    issued: "Apr 2024",
+  },
+  {
+    name: "Share Data Through the Art of Visualization",
+    issuer: "Google",
+    issued: "Apr 2024",
+  },
+  {
+    name: "Analyze Data to Answer Questions",
+    issuer: "Google",
+    issued: "Mar 2024",
+  },
+  {
+    name: "Introduction to Generative AI",
+    issuer: "Google Cloud Skills Boost",
+    issued: "Mar 2024",
+  },
+  {
+    name: "Ask Questions to Make Data-Driven Decisions",
+    issuer: "Google",
+    issued: "Feb 2024",
+  },
+  {
+    name: "Prepare Data for Exploration",
+    issuer: "Google",
+    issued: "Feb 2024",
+  },
+  {
+    name: "Process Data from Dirty to Clean",
+    issuer: "Google",
+    issued: "Feb 2024",
+  },
+  {
+    name: "Foundations: Data, Data, Everywhere",
+    issuer: "Google",
+    issued: "Jan 2024",
+  },
 ] as const
 
 export const sectionCopy = {
@@ -227,7 +289,7 @@ export const sectionCopy = {
   projects: {
     title: "Key",
     titleAccent: "Projects",
-    subtitle: "Highlights from recent ML and AI work",
+    subtitle: "Open-source and portfolio repos from GitHub — ML, NLP, speech, and full-stack AI",
   },
   education: {
     title: "Education &",
