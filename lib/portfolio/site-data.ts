@@ -197,6 +197,12 @@ export const featuredProjects = [
     icon: "network" as const,
     highlight: "Agents + API",
     href: "https://github.com/Shekhar442/taskmesh-ai",
+    extraLinks: [
+      {
+        label: "Frontend repo",
+        href: "https://github.com/Shekhar442/taskmesh-ai-frontend",
+      },
+    ],
   },
 ] as const
 
@@ -206,17 +212,20 @@ export const education = [
     specialization: "Artificial Intelligence" as const,
     institution: "Jain (Deemed-to-be University)",
     period: "2021 – 2023 · CGPA 9.11",
+    href: "https://www.linkedin.com/school/jaindeemedtobeuniversity/",
   },
   {
     degree: "Bachelor of Computer Applications (BCA)",
     institution: "ICFAI University",
     period: "July 2008 – July 2013",
+    href: "https://www.icfaiuniversity.edu.in/",
   },
   {
     degree: "O Level (IT)",
     institution:
       "National Institute of Electronics & Information Technology (NIELIT)",
     period: "August 2021 – March 2022",
+    href: "https://www.nielit.gov.in/",
   },
 ] as const
 
@@ -226,51 +235,61 @@ export const certifications = [
     name: "Introduction to Statistics",
     issuer: "Stanford Online",
     issued: "Sep 2024",
+    href: "https://coursera.org/account/accomplishments/verify/WTTJ94YWP34J",
   },
   {
     name: "Google Data Analytics Professional Certificate",
     issuer: "Coursera",
     issued: "May 2024",
+    href: "https://www.credly.com/badges/2666fe2f-9ff1-44e1-a7fb-15bd3c3c2fe2",
   },
   {
     name: "Data Analysis with R Programming",
     issuer: "Google",
     issued: "Apr 2024",
+    href: "https://coursera.org/account/accomplishments/records/H8W398SE785K",
   },
   {
     name: "Share Data Through the Art of Visualization",
     issuer: "Google",
     issued: "Apr 2024",
+    href: "https://coursera.org/account/accomplishments/records/J9DTDZHJR6SQ",
   },
   {
     name: "Analyze Data to Answer Questions",
     issuer: "Google",
     issued: "Mar 2024",
+    href: "https://coursera.org/account/accomplishments/records/SSTMEB2Y8UM3",
   },
   {
     name: "Introduction to Generative AI",
     issuer: "Google Cloud Skills Boost",
     issued: "Mar 2024",
+    href: "https://cloudskillsboost.google/public_profiles/c8f28622-f854-47c2-b427-b4013c04ec29/badges/8200972",
   },
   {
     name: "Ask Questions to Make Data-Driven Decisions",
     issuer: "Google",
     issued: "Feb 2024",
+    href: "https://coursera.org/account/accomplishments/records/JEY73CQ9DMAX",
   },
   {
     name: "Prepare Data for Exploration",
     issuer: "Google",
     issued: "Feb 2024",
+    href: "https://coursera.org/account/accomplishments/records/QXQ4MXEK5M4Q",
   },
   {
     name: "Process Data from Dirty to Clean",
     issuer: "Google",
     issued: "Feb 2024",
+    href: "https://coursera.org/account/accomplishments/records/CLWUF5QLMMDC",
   },
   {
     name: "Foundations: Data, Data, Everywhere",
     issuer: "Google",
     issued: "Jan 2024",
+    href: "https://coursera.org/account/accomplishments/records/RGTF6TXYUDYR",
   },
 ] as const
 

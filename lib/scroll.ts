@@ -1,12 +1,13 @@
-/** Offset for fixed header so section titles aren’t hidden under the nav */
-const HEADER_OFFSET_PX = 88
-
+/**
+ * Scroll section into view using CSS scroll-margin-top (--site-header-height).
+ * Avoids measuring full <header> height when the mobile menu is open (which
+ * used to inflate the offset and leave the previous section visible).
+ */
 export function scrollToSelector(selector: string, behavior: ScrollBehavior = "smooth") {
   const el = document.querySelector(selector)
   if (!el) return
 
-  const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET_PX
-  window.scrollTo({ top: Math.max(0, top), behavior })
+  el.scrollIntoView({ behavior, block: "start", inline: "nearest" })
 }
 
 export function scrollToTop(behavior: ScrollBehavior = "smooth") {

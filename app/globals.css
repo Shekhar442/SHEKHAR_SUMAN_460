@@ -4,39 +4,41 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.12 0.01 240);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.16 0.01 240);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.16 0.01 240);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.72 0.19 160);
-  --primary-foreground: oklch(0.12 0.01 240);
-  --secondary: oklch(0.22 0.01 240);
-  --secondary-foreground: oklch(0.95 0 0);
-  --muted: oklch(0.22 0.01 240);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.72 0.19 160);
-  --accent-foreground: oklch(0.12 0.01 240);
+  /* Synced from header (collapsed nav bar only); fallback before/without JS */
+  --site-header-height: 5rem;
+  --background: oklch(0.97 0.012 240);
+  --foreground: oklch(0.22 0.025 250);
+  --card: oklch(1 0.008 240);
+  --card-foreground: oklch(0.22 0.025 250);
+  --popover: oklch(1 0.008 240);
+  --popover-foreground: oklch(0.22 0.025 250);
+  --primary: oklch(0.48 0.16 160);
+  --primary-foreground: oklch(0.98 0.01 240);
+  --secondary: oklch(0.93 0.02 240);
+  --secondary-foreground: oklch(0.28 0.03 250);
+  --muted: oklch(0.93 0.02 240);
+  --muted-foreground: oklch(0.46 0.02 250);
+  --accent: oklch(0.9 0.04 160);
+  --accent-foreground: oklch(0.28 0.06 160);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.28 0.01 240);
-  --input: oklch(0.22 0.01 240);
-  --ring: oklch(0.72 0.19 160);
-  --chart-1: oklch(0.72 0.19 160);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.88 0.02 240);
+  --input: oklch(0.88 0.02 240);
+  --ring: oklch(0.48 0.16 160);
+  --chart-1: oklch(0.48 0.16 160);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: oklch(0.16 0.01 240);
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.72 0.19 160);
-  --sidebar-primary-foreground: oklch(0.12 0.01 240);
-  --sidebar-accent: oklch(0.22 0.01 240);
-  --sidebar-accent-foreground: oklch(0.95 0 0);
-  --sidebar-border: oklch(0.28 0.01 240);
-  --sidebar-ring: oklch(0.72 0.19 160);
+  --sidebar: oklch(0.96 0.015 240);
+  --sidebar-foreground: oklch(0.22 0.025 250);
+  --sidebar-primary: oklch(0.48 0.16 160);
+  --sidebar-primary-foreground: oklch(0.98 0.01 240);
+  --sidebar-accent: oklch(0.93 0.02 240);
+  --sidebar-accent-foreground: oklch(0.28 0.03 250);
+  --sidebar-border: oklch(0.88 0.02 240);
+  --sidebar-ring: oklch(0.48 0.16 160);
 }
 
 .dark {
@@ -119,11 +121,19 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Avoid horizontal jump when scrollbar appears while switching sections */
+    scrollbar-gutter: stable;
+    /*
+     * Do NOT set scroll-padding-top here: section[id] already uses scroll-margin-top
+     * for the same offset. Both together stack and look like a “double header”.
+     */
+  }
   body {
     @apply bg-background text-foreground;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
-  /* Fixed header: native #hash jumps and scroll-margin work together */
   section[id] {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: var(--site-header-height);
   }
 }

@@ -7,6 +7,8 @@ Single-page portfolio for **Shekhar Suman** — machine learning engineer, compu
 - **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
 - **UI:** React 19, [Tailwind CSS 4](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/) primitives, [lucide-react](https://lucide.dev/) icons
 - **Fonts:** [Inter](https://fonts.google.com/specimen/Inter) (via `next/font`)
+- **Theme:** Light/dark mode with a header toggle; preference is stored in `localStorage` (`portfolio-theme`) and applied before paint to avoid flash
+- **Contact:** Server route proxies submissions to [Web3Forms](https://web3forms.com/) when configured; otherwise the UI falls back to a `mailto` flow
 - **Analytics:** [Vercel Analytics](https://vercel.com/analytics) (production only)
 
 ## Getting started
@@ -20,51 +22,64 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+### Environment
+
+For the contact form to send email in-app (no mail client), set a Web3Forms access key:
+
+1. Copy `.env.example` to `.env.local` (same folder as `package.json`).
+2. Add your key from [web3forms.com](https://web3forms.com) as `WEB3FORMS_ACCESS_KEY`.
+
+If the key is unset, the API still responds successfully and the client can use the email link instead.
+
 ### Scripts
 
-| Command         | Description                 |
-| --------------- | --------------------------- |
-| `npm run dev`   | Start the development server |
-| `npm run build` | Production build            |
-| `npm run start` | Run the production server   |
-| `npm run lint`  | ESLint (install the `eslint` package if the command is missing) |
+| Command         | Description                    |
+| --------------- | ------------------------------ |
+| `npm run dev`   | Start the development server   |
+| `npm run build` | Production build               |
+| `npm run start` | Run the production server      |
+| `npm run lint`  | ESLint (`eslint` not bundled — add it and a config if you want this script to run) |
 
 ## Project structure
 
 ```text
 app/
-  layout.tsx          # Root layout, metadata, fonts, analytics
-  page.tsx            # Entry: renders HomePage
-  globals.css         # Global styles / theme tokens
+  layout.tsx              # Root layout, metadata, fonts, theme init script, analytics
+  page.tsx                # Entry: renders HomePage
+  globals.css             # Global styles / theme tokens
+  api/contact/route.ts    # POST: validates body, forwards to Web3Forms or mailto fallback
 
 components/
-  portfolio/          # Sections and page composition
-    home-page.tsx     # Composes header, sections, footer
-    header.tsx        # Nav + scroll spy
+  portfolio/              # Sections and page composition
+    home-page.tsx         # Composes header, sections, footer
+    header.tsx            # Nav, scroll spy, theme toggle
     hero.tsx
     about.tsx
     skills.tsx
     experience.tsx
     projects.tsx
     education.tsx
-    contact.tsx
+    contact.tsx           # Form → /api/contact
     footer.tsx
     social-icon-links.tsx
-  ui/                 # Buttons, form fields, label, separator
+  theme-toggle.tsx        # Light / dark control
+  ui/                     # Buttons, inputs, textarea, field, label, separator
 
 hooks/
   use-section-reveal.ts   # Intersection-observer reveal for sections
 
 lib/
   portfolio/
-    site-data.ts      # Nav, profile, skills, jobs, projects, education, certs
-  scroll.ts           # Smooth scroll helpers
-  utils.ts            # `cn()` for class names
+    site-data.ts          # Nav, profile, skills, jobs, projects, education, certs
+  theme.ts                # Theme persistence helpers
+  scroll.ts               # Smooth scroll helpers
+  utils.ts                # `cn()` for class names
 
-public/               # Static assets (e.g. profile photo referenced in site-data)
+public/                   # Static assets (e.g. profile photo referenced in site-data)
 next.config.mjs
 postcss.config.mjs
 tsconfig.json
+.env.example
 ```
 
 ## Customizing content
@@ -86,7 +101,7 @@ Edit **`lib/portfolio/site-data.ts`**:
 
 ## Deployment
 
-Deploy on [Vercel](https://vercel.com/) by connecting the repository, or run `npm run build` and follow your host’s Next.js deployment guide.
+Deploy on [Vercel](https://vercel.com/) by connecting the repository. Add `WEB3FORMS_ACCESS_KEY` in the project’s environment variables if you use the contact form. Alternatively run `npm run build` and follow your host’s Next.js deployment guide.
 
 ## License
 

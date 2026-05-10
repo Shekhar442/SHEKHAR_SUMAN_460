@@ -9,28 +9,79 @@ import { Field, FieldGroup, FieldLabel, FieldContent } from "@/components/ui/fie
 import { useSectionReveal } from "@/hooks/use-section-reveal"
 import { sectionCopy, siteProfile } from "@/lib/portfolio/site-data"
 
+function buildMailtoHref(name: string, email: string, subject: string, message: string) {
+  const params = new URLSearchParams({
+    subject: `[Portfolio] ${subject}`,
+    body: `From: ${name} <${email}>\n\n${message}`,
+  })
+  return `mailto:${siteProfile.email}?${params.toString()}`
+}
+
 export function Contact() {
   const sectionRef = useSectionReveal<HTMLElement>()
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [subject, setSubject] = useState("")
+  const [message, setMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitNote, setSubmitNote] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setError(null)
+    setSubmitNote(null)
     setIsSubmitting(true)
 
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      })
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+      const data = (await res.json()) as {
+        success?: boolean
+        useMailto?: boolean
+        error?: string
+      }
 
-    setTimeout(() => setIsSubmitted(false), 3000)
+      if (data.useMailto) {
+        window.location.href = buildMailtoHref(name, email, subject, message)
+        setSubmitNote(
+          "Your email app should open with this message ready to send. If nothing opens, use the Email card on the left.",
+        )
+        setIsSubmitted(true)
+        setName("")
+        setEmail("")
+        setSubject("")
+        setMessage("")
+        return
+      }
+
+      if (!res.ok || data.success === false) {
+        setError(data.error ?? "Could not send. Try the Email or LinkedIn links on the left.")
+        return
+      }
+
+      setIsSubmitted(true)
+      setName("")
+      setEmail("")
+      setSubject("")
+      setMessage("")
+    } catch {
+      setError("Something went wrong. Please use the Email link on the left.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
     <section
       id="contact"
       ref={sectionRef}
-      className="py-24 px-6 bg-secondary/50"
+      className="mt-24 pb-24 pt-0 px-6 bg-secondary/50"
     >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
@@ -102,15 +153,32 @@ export function Contact() {
                   <Send className="h-8 w-8 text-primary" />
                 </div>
                 <h4 className="text-lg font-semibold text-foreground mb-2">
-                  Message Sent!
+                  {submitNote ? "Almost there" : "Message sent"}
                 </h4>
                 <p className="text-muted-foreground">
-                  Thank you for reaching out. I&apos;ll get back to you soon.
+                  {submitNote ??
+                    "Thank you for reaching out. I'll get back to you soon."}
                 </p>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="mt-6"
+                  onClick={() => {
+                    setIsSubmitted(false)
+                    setSubmitNote(null)
+                  }}
+                >
+                  Send another message
+                </Button>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
                 <FieldGroup>
+                  {error ? (
+                    <p className="text-sm text-destructive" role="alert">
+                      {error}
+                    </p>
+                  ) : null}
                   <Field>
                     <FieldLabel>Name</FieldLabel>
                     <FieldContent>
@@ -118,6 +186,8 @@ export function Contact() {
                         type="text"
                         placeholder="Your name"
                         required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         className="bg-secondary border-border"
                       />
                     </FieldContent>
@@ -130,6 +200,8 @@ export function Contact() {
                         type="email"
                         placeholder="your@email.com"
                         required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="bg-secondary border-border"
                       />
                     </FieldContent>
@@ -142,6 +214,8 @@ export function Contact() {
                         type="text"
                         placeholder="What's this about?"
                         required
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
                         className="bg-secondary border-border"
                       />
                     </FieldContent>
@@ -154,6 +228,8 @@ export function Contact() {
                         placeholder="Your message..."
                         required
                         rows={5}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                         className="bg-secondary border-border resize-none"
                       />
                     </FieldContent>

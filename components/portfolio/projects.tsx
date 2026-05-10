@@ -3,6 +3,7 @@
 import Link from "next/link"
 import {
   ExternalLink,
+  Github,
   HeartPulse,
   MessageSquare,
   Mic,
@@ -31,7 +32,7 @@ export function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-24 px-6 bg-secondary/50"
+      className="mt-24 pb-24 pt-0 px-6 bg-secondary/50"
     >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
@@ -48,7 +49,7 @@ export function Projects() {
             return (
               <div
                 key={project.title}
-                className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
+                className="group flex flex-col h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
@@ -77,20 +78,43 @@ export function Projects() {
                   ))}
                 </div>
 
-                <Button
-                  variant="ghost"
-                  className="w-full text-primary hover:text-primary hover:bg-primary/10"
-                  asChild
-                >
-                  <Link
-                    href={project.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <div className="flex flex-col gap-2 mt-auto">
+                  <Button
+                    variant="outline"
+                    className="w-full border-primary/60 text-primary hover:text-primary hover:bg-primary/10"
+                    asChild
                   >
-                    View on GitHub
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+                    <Link
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="mr-2 h-4 w-4" aria-hidden />
+                      Open GitHub repo
+                      <ExternalLink className="ml-2 h-4 w-4 shrink-0" aria-hidden />
+                    </Link>
+                  </Button>
+                  {"extraLinks" in project &&
+                    project.extraLinks?.map((extra) => (
+                      <Button
+                        key={extra.href}
+                        variant="ghost"
+                        size="sm"
+                        className="w-full text-primary hover:text-primary hover:bg-primary/10"
+                        asChild
+                      >
+                        <Link
+                          href={extra.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="mr-2 h-4 w-4" aria-hidden />
+                          {extra.label}
+                          <ExternalLink className="ml-2 h-4 w-4 shrink-0" aria-hidden />
+                        </Link>
+                      </Button>
+                    ))}
+                </div>
               </div>
             )
           })}

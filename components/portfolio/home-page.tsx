@@ -12,7 +12,7 @@ export function HomePage() {
   return (
     <>
       <Header />
-      <main>
+      <main className="min-w-0">
         <Hero />
         <About />
         <Skills />

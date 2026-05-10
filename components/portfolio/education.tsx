@@ -1,6 +1,7 @@
 "use client"
 
-import { GraduationCap, Award } from "lucide-react"
+import Link from "next/link"
+import { Award, ExternalLink, GraduationCap } from "lucide-react"
 import { useSectionReveal } from "@/hooks/use-section-reveal"
 import { certifications, education, sectionCopy } from "@/lib/portfolio/site-data"
 
@@ -11,7 +12,7 @@ export function Education() {
     <section
       id="education"
       ref={sectionRef}
-      className="py-24 px-6"
+      className="mt-24 pb-24 pt-0 px-6"
     >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
@@ -22,13 +23,13 @@ export function Education() {
           {sectionCopy.education.subtitle}
         </p>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 lg:items-start gap-12">
           <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-2 rounded-lg bg-primary/10">
+            <div className="mb-8 flex min-h-[3.25rem] items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                 <GraduationCap className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-2xl font-semibold text-foreground">Education</h3>
+              <h3 className="text-2xl font-semibold leading-tight text-foreground">Education</h3>
             </div>
 
             <div className="flex flex-col gap-6">
@@ -46,7 +47,15 @@ export function Education() {
                     </p>
                   ) : null}
                   <p className="text-muted-foreground text-sm mb-1">
-                    {edu.institution}
+                    <Link
+                      href={edu.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-primary hover:underline underline-offset-4"
+                    >
+                      {edu.institution}
+                      <ExternalLink className="h-3 w-3 shrink-0 opacity-80" aria-hidden />
+                    </Link>
                   </p>
                   <p className="text-muted-foreground text-xs">{edu.period}</p>
                 </div>
@@ -55,32 +64,41 @@ export function Education() {
           </div>
 
           <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-2 rounded-lg bg-primary/10">
+            <div className="mb-8 flex min-h-[3.25rem] items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                 <Award className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-2xl font-semibold text-foreground">Certifications</h3>
+              <h3 className="text-2xl font-semibold leading-tight text-foreground">Certifications</h3>
             </div>
 
             <div className="flex flex-col gap-4">
               {certifications.map((cert) => (
-                <div
+                <Link
                   key={cert.name}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors"
+                  href={cert.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group"
                 >
                   <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                     <span className="text-primary font-bold text-sm">
                       {cert.issuer.slice(0, 2).toUpperCase()}
                     </span>
                   </div>
-                  <div>
-                    <h4 className="text-sm font-medium text-foreground">{cert.name}</h4>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors inline-flex items-center gap-1.5">
+                      {cert.name}
+                      <ExternalLink
+                        className="h-3.5 w-3.5 shrink-0 text-muted-foreground group-hover:text-primary"
+                        aria-hidden
+                      />
+                    </h4>
                     <p className="text-xs text-muted-foreground">
                       {cert.issuer}
                       {"issued" in cert && cert.issued ? ` · Issued ${cert.issued}` : ""}
                     </p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
