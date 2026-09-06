@@ -22,7 +22,8 @@ export const siteProfile = {
     "AI and Machine Learning Engineer at Sveltetech Technology Pvt. Ltd., focused on real-world problems with AI, data science, and predictive analytics. Twenty years in the Indian Air Force built expertise in logistics optimization, operational planning, and analysis; today that same discipline goes into computer vision, NLP, and deep learning—including a nervousness detection system at 95.49% accuracy and Musafir_Bot travel assistant.",
   aboutSubtitle:
     "Military precision meets modern ML: from mission-critical operations to models in production",
-  aboutImageSrc: "/Shekhar.png",
+  aboutImageSrc: "/Shekhar_Light.png",
+  aboutImageSrcDark: "/Shekhar_Dark.png",
   aboutHeading: "AI engineer with a military foundation",
   aboutParagraphs: [
     "I am an AI and Machine Learning Engineer with a passion for solving real-world problems using AI, data science, and predictive analytics. My journey began in the Indian Air Force, where I gained expertise in logistics optimization, operational planning, and data analysis over 20 years. I now apply that precision at Sveltetech Technology Pvt. Ltd. in Gurugram, building AI-driven solutions in computer vision, NLP, and deep learning.",

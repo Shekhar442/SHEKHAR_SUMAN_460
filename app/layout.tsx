@@ -31,6 +31,21 @@ export const metadata: Metadata = {
     description:
       'ML Engineer at Sveltetech: computer vision, NLP, GenAI, and production systems. Indian Air Force veteran.',
     type: 'website',
+    images: [
+      {
+        url: '/Shekhar_Light.png',
+        width: 1200,
+        height: 1200,
+        alt: 'Shekhar Suman',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shekhar Suman | AI & Machine Learning Engineer',
+    description:
+      'ML Engineer at Sveltetech: computer vision, NLP, GenAI, and production systems. Indian Air Force veteran.',
+    images: ['/Shekhar_Light.png'],
   },
   icons: {
     icon: [

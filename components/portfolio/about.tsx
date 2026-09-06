@@ -30,13 +30,22 @@ export function About() {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
-            <div className="aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border-2 border-primary/20 bg-secondary">
+            <div className="aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border-2 border-primary/20 bg-secondary shadow-[0_20px_50px_-24px_rgba(0,0,0,0.45)]">
               <Image
                 src={siteProfile.aboutImageSrc}
                 alt={siteProfile.name}
-                width={400}
-                height={400}
-                className="object-cover w-full h-full"
+                width={800}
+                height={800}
+                priority
+                className="object-cover object-top w-full h-full dark:hidden"
+              />
+              <Image
+                src={siteProfile.aboutImageSrcDark}
+                alt={siteProfile.name}
+                width={800}
+                height={800}
+                priority
+                className="object-cover object-top w-full h-full hidden dark:block"
               />
             </div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 rounded-2xl -z-10" />
