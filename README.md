@@ -103,7 +103,7 @@ Edit **`lib/portfolio/site-data.ts`**:
 
 **Branding / favicons:** The site uses a teal **SS** monogram aligned with the theme primary color. Vector favicon: `public/icon.svg` (adapts to light/dark system preference). Raster fallbacks and Apple touch icon are wired in `app/layout.tsx` (`icon-light-32x32.png`, `icon-dark-32x32.png`, `apple-icon.png`). After you change colors or glyphs, edit `public/icon.svg` (and `public/placeholder-logo.svg` if needed), update the SVG snippets inside `scripts/generate-icons.mjs` so PNG output matches, then run **`npm run icons`**.
 
-**LinkedIn sync:** Public profile details were last aligned to [linkedin.com/in/shekhar-suman-a5978833](https://www.linkedin.com/in/shekhar-suman-a5978833); re-run a manual pass in `site-data.ts` when your LinkedIn changes.
+**Profile sync:** Content in `site-data.ts` is aligned with [LinkedIn](https://www.linkedin.com/in/shekhar-suman-a5978833) and [GitHub (@Shekhar442)](https://github.com/Shekhar442) (last refreshed Sep 2026). Re-run a manual pass when either profile changes.
 
 ## Deployment
 

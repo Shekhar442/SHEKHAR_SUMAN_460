@@ -12,13 +12,24 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Shekhar Suman | AI & Machine Learning Engineer',
   description:
-    'AI & Machine Learning Engineer with 4+ years of data science experience and 20 years of Indian Air Force service in logistics and operations. Specialized in computer vision, NLP, and deep learning; nervousness detection system at 95.49% accuracy.',
-  keywords: ['AI Engineer', 'Machine Learning', 'Computer Vision', 'NLP', 'Deep Learning', 'Python', 'TensorFlow', 'PyTorch'],
+    'Machine Learning Engineer at Sveltetech Technology Pvt. Ltd. and Indian Air Force veteran (20 years). Specialized in computer vision, NLP, generative AI, and deep learning; nervousness detection system at 95.49% accuracy.',
+  keywords: [
+    'AI Engineer',
+    'Machine Learning',
+    'Computer Vision',
+    'NLP',
+    'Deep Learning',
+    'Generative AI',
+    'Python',
+    'TensorFlow',
+    'PyTorch',
+    'Sveltetech',
+  ],
   authors: [{ name: 'Shekhar Suman' }],
   openGraph: {
     title: 'Shekhar Suman | AI & Machine Learning Engineer',
     description:
-      'AI & ML engineer: computer vision, NLP, deep learning, and production systems. Ex–Indian Air Force SNCO.',
+      'ML Engineer at Sveltetech: computer vision, NLP, GenAI, and production systems. Indian Air Force veteran.',
     type: 'website',
   },
   icons: {

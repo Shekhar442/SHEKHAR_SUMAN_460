@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Linkedin, MapPin, Send } from "lucide-react"
+import { Mail, Linkedin, Github, MapPin, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -61,7 +61,7 @@ export function Contact() {
       }
 
       if (!res.ok || data.success === false) {
-        setError(data.error ?? "Could not send. Try the Email or LinkedIn links on the left.")
+        setError(data.error ?? "Could not send. Try the Email, LinkedIn, or GitHub links on the left.")
         return
       }
 
@@ -127,6 +127,21 @@ export function Contact() {
                 <div>
                   <p className="text-sm text-muted-foreground">LinkedIn</p>
                   <p className="text-foreground font-medium">{siteProfile.linkedinHandle}</p>
+                </div>
+              </a>
+
+              <a
+                href={siteProfile.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group"
+              >
+                <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                  <Github className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">GitHub</p>
+                  <p className="text-foreground font-medium">@{siteProfile.githubHandle}</p>
                 </div>
               </a>
 
