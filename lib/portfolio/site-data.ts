@@ -161,6 +161,9 @@ export const featuredProjects = [
     icon: "stethoscope" as const,
     highlight: "Private · Voice + AI",
     href: "https://github.com/Shekhar442/Paideia",
+    extraLinks: [
+      { label: "Live demo", href: "https://paideia-52488426225.us-west1.run.app/" },
+    ],
   },
   {
     title: "journal460 — Gemini Journal App",
@@ -170,6 +173,9 @@ export const featuredProjects = [
     icon: "bookOpen" as const,
     highlight: "Full-stack / GenAI",
     href: "https://github.com/Shekhar442/journal460",
+    extraLinks: [
+      { label: "Live demo", href: "https://journal460.ai.studio/" },
+    ],
   },
   {
     title: "AyushMitr — Developmental Support Agent",
