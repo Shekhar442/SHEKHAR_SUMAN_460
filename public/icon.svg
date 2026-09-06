@@ -1,14 +1,14 @@
 <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
     @media (prefers-color-scheme: light) {
-      .bg { fill: #f0fdfa; }
-      .fg { fill: #115e59; }
-      .accent { stroke: #0d9488; }
+      .bg { fill: #eff6ff; }
+      .fg { fill: #1e3a8a; }
+      .accent { stroke: #2563eb; }
     }
     @media (prefers-color-scheme: dark) {
-      .bg { fill: #134e4a; }
-      .fg { fill: #ccfbf1; }
-      .accent { stroke: #5eead4; }
+      .bg { fill: #1e3a8a; }
+      .fg { fill: #dbeafe; }
+      .accent { stroke: #60a5fa; }
     }
   </style>
   <rect class="bg" width="180" height="180" rx="40" />

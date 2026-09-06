@@ -1,25 +1,18 @@
 "use client"
 
 import { useState, useEffect, useLayoutEffect } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { siteNav, siteProfile } from "@/lib/portfolio/site-data"
-import { scrollToSelector, scrollToTop } from "@/lib/scroll"
-
-function navigateToSection(href: string) {
-  scrollToSelector(href)
-  if (typeof window !== "undefined" && href.startsWith("#") && href.length > 1) {
-    window.history.replaceState(null, "", href)
-  }
-}
 
 export function Header() {
+  const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("")
 
-  /** Collapsed nav bar height only (ignore open mobile menu) → scroll-margin / scroll-padding */
   useLayoutEffect(() => {
     const syncHeaderOffsetVar = () => {
       const nav = document.querySelector("header nav")
@@ -48,30 +41,17 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
-
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id)
-        }
-      })
-    }
-
-    const observer = new IntersectionObserver(observerCallback, {
-      rootMargin: "-50% 0px -50% 0px",
-    })
-
-    siteNav.forEach(({ href }) => {
-      const section = document.querySelector(href)
-      if (section) observer.observe(section)
-    })
-
+    handleScroll()
     window.addEventListener("scroll", handleScroll)
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      observer.disconnect()
-    }
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [pathname])
+
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`)
 
   return (
     <header
@@ -81,34 +61,21 @@ export function Header() {
     >
       <nav className="mx-auto max-w-6xl px-6 py-4">
         <div className="flex items-center justify-between">
-          <a
-            href="#"
-            className="text-xl font-bold text-primary"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToTop()
-            }}
-          >
+          <Link href="/" className="text-xl font-bold text-primary">
             {siteProfile.logoInitials}
-          </a>
+          </Link>
 
           <ul className="hidden md:flex items-center gap-8">
             {siteNav.map(({ label, href }) => (
               <li key={href}>
-                <a
+                <Link
                   href={href}
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    activeSection === href.slice(1)
-                      ? "text-primary"
-                      : "text-muted-foreground"
+                    isActive(href) ? "text-primary" : "text-muted-foreground"
                   }`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    navigateToSection(href)
-                  }}
                 >
                   {label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -131,23 +98,14 @@ export function Header() {
           <ul className="md:hidden mt-4 pb-4 flex flex-col gap-4 border-t border-border pt-4">
             {siteNav.map(({ label, href }) => (
               <li key={href}>
-                <a
+                <Link
                   href={href}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setIsMobileMenuOpen(false)
-                    requestAnimationFrame(() => {
-                      requestAnimationFrame(() => navigateToSection(href))
-                    })
-                  }}
                   className={`block text-sm font-medium transition-colors hover:text-primary ${
-                    activeSection === href.slice(1)
-                      ? "text-primary"
-                      : "text-muted-foreground"
+                    isActive(href) ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
                   {label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,7 +1,7 @@
 "use client"
 
-import Image from "next/image"
 import { Award, Briefcase, GraduationCap, type LucideIcon } from "lucide-react"
+import { ProfilePortrait } from "@/components/portfolio/profile-portrait"
 import { useSectionReveal } from "@/hooks/use-section-reveal"
 import { aboutStats, siteProfile } from "@/lib/portfolio/site-data"
 
@@ -18,7 +18,7 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="mt-24 pb-24 pt-0 px-6"
+      className="scroll-mt-[var(--site-header-height)] pt-28 pb-24 px-6"
     >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
@@ -29,28 +29,7 @@ export function About() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <div className="aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border-2 border-primary/20 bg-secondary shadow-[0_20px_50px_-24px_rgba(0,0,0,0.45)]">
-              <Image
-                src={siteProfile.aboutImageSrc}
-                alt={siteProfile.name}
-                width={800}
-                height={800}
-                priority
-                className="object-cover object-top w-full h-full dark:hidden"
-              />
-              <Image
-                src={siteProfile.aboutImageSrcDark}
-                alt={siteProfile.name}
-                width={800}
-                height={800}
-                priority
-                className="object-cover object-top w-full h-full hidden dark:block"
-              />
-            </div>
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 rounded-2xl -z-10" />
-            <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-2xl -z-10" />
-          </div>
+          <ProfilePortrait size="about" />
 
           <div>
             <h3 className="text-2xl font-semibold text-foreground mb-4">

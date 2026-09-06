@@ -46,14 +46,21 @@ If the key is unset, the API still responds successfully and the client can use 
 ```text
 app/
   layout.tsx              # Root layout, metadata, fonts, theme init script, analytics
-  page.tsx                # Entry: renders HomePage
   globals.css             # Global styles / theme tokens
   api/contact/route.ts    # POST: validates body, forwards to Web3Forms or mailto fallback
+  (site)/
+    layout.tsx            # Shared Header + Footer for all portfolio pages
+    page.tsx              # Home (Hero)
+    about/page.tsx
+    skills/page.tsx
+    experience/page.tsx
+    projects/page.tsx
+    education/page.tsx
+    contact/page.tsx
 
 components/
-  portfolio/              # Sections and page composition
-    home-page.tsx         # Composes header, sections, footer
-    header.tsx            # Nav, scroll spy, theme toggle
+  portfolio/              # Page sections
+    header.tsx            # Multi-page nav (Next.js Link), theme toggle
     hero.tsx
     about.tsx
     skills.tsx
@@ -79,7 +86,7 @@ lib/
 scripts/
   generate-icons.mjs      # Renders `icon-*.png`, `apple-icon.png`, `placeholder-logo.png` via Sharp
 
-public/                   # Static assets: profile photo, favicons (`icon.svg`, `icon-*-32x32.png`, `apple-icon.png`), wordmark (`placeholder-logo.*`)
+public/                   # Static assets: profile photos, favicons, wordmark
 next.config.mjs
 postcss.config.mjs
 tsconfig.json
@@ -90,18 +97,16 @@ tsconfig.json
 
 Edit **`lib/portfolio/site-data.ts`**:
 
-- `siteNav` — header anchors (`#about`, `#skills`, …)
-- `siteProfile` — name, role, `logoInitials` (header badge; keep in sync with favicon monogram), email, `linkedinUrl` / `linkedinHandle`, `githubUrl`, location, hero and about copy, `aboutImageSrc`
+- `siteNav` — header routes (`/about`, `/skills`, …)
+- `siteProfile` — name, role, `logoInitials` (header badge; keep in sync with favicon monogram), email, `linkedinUrl` / `linkedinHandle`, `githubUrl`, location, hero and about copy, `aboutImageSrc` / `aboutImageSrcDark`
 - `aboutStats`, `skillCategories`, `experiences`, `featuredProjects`, `education`, `certifications`
 - `sectionCopy` — section titles and subtitles
 
-**GitHub:** Replace the placeholder `siteProfile.githubUrl` with your profile URL when ready.
+**Images:** Place files under `public/` and set `aboutImageSrc` / `aboutImageSrcDark` to paths such as `/Shekhar_Light.png`. With `images.unoptimized: true` in `next.config.mjs`, remote URLs work without extra hostname configuration; for optimized remote images, add `images.remotePatterns` in `next.config.mjs`.
 
-**Images:** Place files under `public/` and set `aboutImageSrc` to a path such as `/Shekhar.png`. With `images.unoptimized: true` in `next.config.mjs`, remote URLs work without extra hostname configuration; for optimized remote images, add `images.remotePatterns` in `next.config.mjs`.
+**SEO:** Update `metadata` in `app/layout.tsx` and per-page metadata under `app/(site)/*/page.tsx`.
 
-**SEO:** Update `metadata` in `app/layout.tsx`.
-
-**Branding / favicons:** The site uses a teal **SS** monogram aligned with the theme primary color. Vector favicon: `public/icon.svg` (adapts to light/dark system preference). Raster fallbacks and Apple touch icon are wired in `app/layout.tsx` (`icon-light-32x32.png`, `icon-dark-32x32.png`, `apple-icon.png`). After you change colors or glyphs, edit `public/icon.svg` (and `public/placeholder-logo.svg` if needed), update the SVG snippets inside `scripts/generate-icons.mjs` so PNG output matches, then run **`npm run icons`**.
+**Branding / favicons:** The site uses a blue **SS** monogram aligned with the theme primary color. Vector favicon: `public/icon.svg` (adapts to light/dark system preference). Raster fallbacks and Apple touch icon are wired in `app/layout.tsx` (`icon-light-32x32.png`, `icon-dark-32x32.png`, `apple-icon.png`).
 
 **Profile sync:** Content in `site-data.ts` is aligned with [LinkedIn](https://www.linkedin.com/in/shekhar-suman-a5978833) and [GitHub (@Shekhar442)](https://github.com/Shekhar442) (last refreshed Sep 2026). Re-run a manual pass when either profile changes.
 

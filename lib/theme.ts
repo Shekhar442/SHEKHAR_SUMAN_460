@@ -13,20 +13,28 @@ export function getStoredTheme(): ThemePreference | null {
   return null
 }
 
-export function getSystemDark(): boolean {
-  if (typeof window === "undefined") return false
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
+export function getDocumentTheme(): ThemePreference {
+  if (typeof document === "undefined") return "dark"
+  const attr = document.documentElement.getAttribute("data-theme")
+  if (attr === "light" || attr === "dark") return attr
+  return document.documentElement.classList.contains("dark") ? "dark" : "light"
 }
 
 export function resolveTheme(stored: ThemePreference | null): ThemePreference {
   if (stored) return stored
-  return getSystemDark() ? "dark" : "light"
+  return "dark"
 }
 
-export function applyThemeClass(theme: ThemePreference) {
+/** Apply theme to <html>. Uses data-theme + .dark for Tailwind/CSS variables. */
+export function applyTheme(theme: ThemePreference) {
   const root = document.documentElement
-  if (theme === "dark") root.classList.add("dark")
-  else root.classList.remove("dark")
+  root.setAttribute("data-theme", theme)
+  if (theme === "dark") {
+    root.classList.add("dark")
+  } else {
+    root.classList.remove("dark")
+  }
+  root.style.colorScheme = theme
 }
 
 export function persistTheme(theme: ThemePreference) {
@@ -35,4 +43,9 @@ export function persistTheme(theme: ThemePreference) {
   } catch {
     /* ignore */
   }
+}
+
+/** @deprecated use applyTheme */
+export function applyThemeClass(theme: ThemePreference) {
+  applyTheme(theme)
 }

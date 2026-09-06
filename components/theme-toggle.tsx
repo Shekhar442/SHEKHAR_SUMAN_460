@@ -1,51 +1,25 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { Moon, Sun } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import {
-  applyThemeClass,
-  getStoredTheme,
-  persistTheme,
-  resolveTheme,
-  type ThemePreference,
-} from "@/lib/theme"
+import { useTheme } from "@/components/theme-provider"
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false)
-  const [theme, setTheme] = useState<ThemePreference>("light")
-
-  useEffect(() => {
-    const resolved = resolveTheme(getStoredTheme())
-    setTheme(resolved)
-    applyThemeClass(resolved)
-    setMounted(true)
-  }, [])
-
+  const { theme, toggleTheme } = useTheme()
   const isDark = theme === "dark"
 
   return (
-    <Button
+    <button
       type="button"
-      variant="ghost"
-      size="icon"
-      className="shrink-0"
-      disabled={!mounted}
-      onClick={() => {
-        const next: ThemePreference = isDark ? "light" : "dark"
-        setTheme(next)
-        applyThemeClass(next)
-        persistTheme(next)
-      }}
+      onClick={toggleTheme}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      title={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      className="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-md border-2 border-[#60a5fa] bg-[#1e3a8a] text-[#eff6ff] shadow-sm transition-colors hover:bg-[#2563eb] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]"
     >
-      {!mounted ? (
-        <span className="block h-5 w-5" aria-hidden />
-      ) : isDark ? (
-        <Sun className="h-5 w-5" />
+      {isDark ? (
+        <Sun aria-hidden className="h-5 w-5 shrink-0" strokeWidth={2.5} />
       ) : (
-        <Moon className="h-5 w-5" />
+        <Moon aria-hidden className="h-5 w-5 shrink-0" strokeWidth={2.5} />
       )}
-    </Button>
+    </button>
   )
 }

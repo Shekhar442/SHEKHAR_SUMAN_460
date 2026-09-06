@@ -11,7 +11,7 @@ export function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="mt-24 pb-24 pt-0 px-6"
+      className="scroll-mt-[var(--site-header-height)] pt-28 pb-24 px-6"
     >
       <div className="max-w-4xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">

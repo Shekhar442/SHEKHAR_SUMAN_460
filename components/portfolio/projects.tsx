@@ -56,7 +56,7 @@ export function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="mt-24 pb-24 pt-0 px-6 bg-secondary/50"
+      className="scroll-mt-[var(--site-header-height)] pt-28 pb-24 px-6 bg-secondary/50"
     >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">

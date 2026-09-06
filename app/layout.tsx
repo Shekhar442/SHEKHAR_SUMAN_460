@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
 const inter = Inter({ 
@@ -10,7 +11,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Shekhar Suman | AI & Machine Learning Engineer',
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://shekhar-suman-460.vercel.app',
+  ),
+  title: {
+    default: 'Shekhar Suman | AI & Machine Learning Engineer',
+    template: '%s | Shekhar Suman',
+  },
   description:
     'Machine Learning Engineer at Sveltetech Technology Pvt. Ltd. and Indian Air Force veteran (20 years). Specialized in computer vision, NLP, generative AI, and deep learning; nervousness detection system at 95.49% accuracy.',
   keywords: [
@@ -66,7 +73,7 @@ export const metadata: Metadata = {
   },
 }
 
-const themeInitScript = `(function(){try{var k='portfolio-theme';var s=localStorage.getItem(k);var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;var r=document.documentElement;if(d)r.classList.add('dark');else r.classList.remove('dark');}catch(e){}})();`
+const themeInitScript = `(function(){try{var k='portfolio-theme';var s=localStorage.getItem(k);var theme=(s==='light'||s==='dark')?s:'dark';var r=document.documentElement;r.setAttribute('data-theme',theme);r.classList.toggle('dark',theme==='dark');r.style.colorScheme=theme;}catch(e){var r=document.documentElement;r.setAttribute('data-theme','dark');r.classList.add('dark');r.style.colorScheme='dark';}})();`
 
 export default function RootLayout({
   children,
@@ -74,14 +81,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth bg-background" suppressHydrationWarning>
+    <html
+      lang="en"
+      className="scroll-smooth bg-background"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className={`${inter.variable} font-sans antialiased`}>
         <Script
           id="theme-init"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: themeInitScript }}
         />
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

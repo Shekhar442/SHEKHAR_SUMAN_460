@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="280" height="48" viewBox="0 0 280 48" fill="none">
   <style>
     @media (prefers-color-scheme: light) {
-      .mark-bg { fill: #115e59; }
-      .mark-fg { fill: #f0fdfa; }
-      .name { fill: #134e4a; }
-      .tag { fill: #0f766e; }
+      .mark-bg { fill: #1e40af; }
+      .mark-fg { fill: #eff6ff; }
+      .name { fill: #1e3a8a; }
+      .tag { fill: #1d4ed8; }
     }
     @media (prefers-color-scheme: dark) {
-      .mark-bg { fill: #5eead4; }
-      .mark-fg { fill: #134e4a; }
-      .name { fill: #ecfdf5; }
-      .tag { fill: #99f6e4; }
+      .mark-bg { fill: #60a5fa; }
+      .mark-fg { fill: #1e3a8a; }
+      .name { fill: #eff6ff; }
+      .tag { fill: #93c5fd; }
     }
   </style>
   <rect class="mark-bg" x="0" y="4" width="40" height="40" rx="10" />

@@ -1,35 +1,18 @@
 "use client"
 
-import Image from "next/image"
+import Link from "next/link"
 import { ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ProfilePortrait } from "@/components/portfolio/profile-portrait"
 import { SocialIconLinks } from "@/components/portfolio/social-icon-links"
 import { siteProfile } from "@/lib/portfolio/site-data"
-import { scrollToSelector } from "@/lib/scroll"
 
 export function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 pt-20">
       <div className="max-w-4xl mx-auto text-center">
-        <div className="mb-8 flex justify-center">
-          <div className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-primary/30 bg-secondary shadow-lg md:h-32 md:w-32">
-            <Image
-              src={siteProfile.aboutImageSrc}
-              alt={siteProfile.name}
-              width={256}
-              height={256}
-              priority
-              className="h-full w-full object-cover object-top dark:hidden"
-            />
-            <Image
-              src={siteProfile.aboutImageSrcDark}
-              alt={siteProfile.name}
-              width={256}
-              height={256}
-              priority
-              className="hidden h-full w-full object-cover object-top dark:block"
-            />
-          </div>
+        <div className="mb-10 flex justify-center">
+          <ProfilePortrait size="hero" />
         </div>
 
         <div className="mb-6 inline-block">
@@ -55,17 +38,17 @@ export function Hero() {
           <Button
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90"
-            onClick={() => scrollToSelector("#contact")}
+            asChild
           >
-            Get in Touch
+            <Link href="/contact">Get in Touch</Link>
           </Button>
           <Button
             size="lg"
             variant="outline"
             className="border-border text-foreground hover:bg-secondary"
-            onClick={() => scrollToSelector("#projects")}
+            asChild
           >
-            View Projects
+            <Link href="/projects">View Projects</Link>
           </Button>
         </div>
 
@@ -75,11 +58,12 @@ export function Hero() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => scrollToSelector("#about")}
             className="text-muted-foreground hover:text-primary transition-colors"
-            aria-label="Scroll to about section"
+            asChild
           >
-            <ArrowDown className="h-6 w-6" />
+            <Link href="/about" aria-label="Go to about page">
+              <ArrowDown className="h-6 w-6" />
+            </Link>
           </Button>
         </div>
       </div>
